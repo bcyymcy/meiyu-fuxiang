@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>梅雨浮香 · 回宅帖</title>
+<style>
+:root{
+  --bg-day:url("https://testingcf.jsdelivr.net/gh/bcyymcy/meiyu-fuxiang@main/zhuye/zhuye_bg.jpg");
+  --paper:#ece8dc;--paper-hi:#f4f1e8;--ink:#2f2924;--faded:#6f665a;
+  --lacquer:#3b2a22;--cinnabar:#a8423f;--moss:#56664b;--celadon:#7d8f86;--line:#9c8c74;
+  --song:"Noto Serif CJK SC","Source Han Serif SC","Songti SC","SimSun","宋体",serif;
+  --kai:"STKaiti","KaiTi","楷体","Kaiti SC",serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:#26201b}
+body{padding:18px 12px;color:var(--ink);font-family:var(--song);-webkit-text-size-adjust:100%}
+button{font:inherit;color:inherit}
+a{color:inherit;-webkit-tap-highlight-color:transparent}
+
+/* 卷面：素纱宣纸 + 漆框双线 */
+.scroll{position:relative;max-width:760px;margin:0 auto;background:
+  repeating-linear-gradient(90deg,#00000005 0 1px,transparent 1px 4px),
+  linear-gradient(#f2efe6,var(--paper) 40%,#e6e1d3);
+  border:7px solid var(--lacquer);outline:1px solid #8a735a;outline-offset:-3px;
+  box-shadow:0 18px 60px #000a;isolation:isolate;overflow:hidden}
+.scroll::after{content:"";position:absolute;inset:5px;border:1px solid #9c8c7480;pointer-events:none;z-index:6}
+
+/* 首屏 */
+.hero{position:relative;line-height:0;border-bottom:1px solid var(--line);overflow:hidden}
+.hero img{display:block;width:100%;height:auto}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:repeating-linear-gradient(104deg,transparent 0 22px,#ffffff2e 22px 23px,transparent 23px 47px);
+  background-size:200% 200%;opacity:.45;animation:rain 1.6s linear infinite;mix-blend-mode:screen}
+@keyframes rain{from{background-position:0 0}to{background-position:-40px 160px}}
+
+.body-copy{position:relative;padding:34px 44px 0}
+.section-title{display:flex;align-items:center;justify-content:center;gap:14px;margin:0 0 18px;
+  font:700 28px/1.3 var(--kai);letter-spacing:.2em;color:var(--lacquer);text-indent:.2em}
+.section-title::before,.section-title::after{content:"";width:42px;height:7px;border-top:1px solid var(--line);border-bottom:1px solid #9c8c7466}
+.rule{display:flex;align-items:center;gap:10px;color:#9c8c74;margin:26px 0}
+.rule::before,.rule::after{content:"";height:1px;flex:1;background:linear-gradient(90deg,transparent,var(--line))}
+.rule::after{transform:scaleX(-1)}
+.rule span{font-size:12px;letter-spacing:.3em}
+
+/* 雨笺序：须知 + 故事 */
+.prelude{position:relative;isolation:isolate;padding-bottom:4px}
+.prelude::before{content:"";position:absolute;left:-44px;right:-44px;top:-34px;bottom:-10px;z-index:-1;
+  background:var(--bg-day) center 20%/cover no-repeat;opacity:.34;
+  -webkit-mask-image:linear-gradient(transparent,#000 10%,#000 80%,transparent);mask-image:linear-gradient(transparent,#000 10%,#000 80%,transparent)}
+.notice ul{list-style:none;margin:0 auto;padding:0;max-width:520px}
+.notice li{position:relative;padding:7px 0 7px 26px;font-size:15px;line-height:1.85;letter-spacing:.04em;border-bottom:1px dashed #9c8c7455}
+.notice li:last-child{border-bottom:0}
+.notice li::before{content:"";position:absolute;left:4px;top:16px;width:7px;height:7px;transform:rotate(45deg);border:1px solid var(--cinnabar)}
+.story p{margin:0;text-align:center;font:17px/2.1 var(--kai);letter-spacing:.14em;color:#3a322b}
+.story em{font-style:normal;color:var(--cinnabar)}
+
+/* 宅中人 */
+.cast{position:relative;margin:6px -44px 0;padding:30px 44px 18px;isolation:isolate;
+  border-top:1px solid #9c8c7444;border-bottom:1px solid #9c8c7444;background:linear-gradient(#e3ded0aa,#ece8dc00 40%,#e3ded0aa)}
+.cast-row{position:relative;display:grid;grid-template-columns:118px minmax(0,1fr);gap:26px;align-items:center;padding:18px 10px}
+.cast-row + .cast-row::before{content:"";position:absolute;left:154px;right:10px;top:0;height:1px;background:linear-gradient(90deg,#9c8c7477,transparent)}
+.portrait{position:relative;width:118px;height:156px;padding:5px;background:var(--paper-hi);
+  border:3px double var(--accent,var(--cinnabar));outline:1px solid #b5a68c;outline-offset:3px;
+  box-shadow:3px 6px 12px #3b2a2222;transform:rotate(-.8deg)}
+.cast-row:nth-child(even) .portrait{transform:rotate(.7deg)}
+.portrait img{display:block;width:100%;height:100%;object-fit:cover;border:1px solid #c9bca5}
+.portrait::after{content:"像待绘";position:absolute;right:-10px;bottom:10px;padding:3px 2px;writing-mode:vertical-rl;
+  font:11px/1.1 var(--kai);letter-spacing:2px;color:#f4ece0;background:var(--accent,var(--cinnabar));opacity:.82;transform:rotate(4deg)}
+.cast-name{display:flex;align-items:center;gap:14px;margin:0 0 6px;font:700 27px/1.3 var(--kai);letter-spacing:.12em;color:var(--accent,var(--cinnabar))}
+.seal{font:12px/1.15 var(--kai);writing-mode:vertical-rl;letter-spacing:2px;padding:4px 3px;
+  border:1px solid currentColor;outline:1px solid currentColor;outline-offset:2px;transform:rotate(-3deg);opacity:.85}
+.cast-role{margin:0 0 9px;font-size:13px;letter-spacing:.1em;color:var(--faded)}
+.cast-copy{margin:0;font-size:15.5px;line-height:1.9;letter-spacing:.03em}
+.c-zhao{--accent:#a8423f}.c-shu{--accent:#6b4a3a}.c-wei{--accent:#4f6670}.c-shang{--accent:#b0566a}
+
+/* 择屏入局 */
+.openings{position:relative;isolation:isolate;padding-top:30px}
+.entry-note{margin:-8px 0 18px;text-align:center;font-size:13px;letter-spacing:.12em;color:var(--faded)}
+.opening-list{display:grid;gap:14px}
+.opening{position:relative;display:grid;grid-template-columns:52px 128px minmax(0,1fr) 30px;align-items:stretch;
+  width:100%;min-height:128px;padding:0;text-align:left;cursor:pointer;border:1px solid #8f7d64;
+  background:linear-gradient(90deg,#f6f3ea,#ede8dc);box-shadow:0 3px 10px #3b2a2214;
+  transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
+.opening:hover,.opening:focus-visible{transform:translateY(-2px);border-color:var(--tone);box-shadow:0 8px 20px #3b2a2226;outline:none}
+.opening[aria-busy="true"]{opacity:.62}
+.opening:disabled{cursor:progress}
+.op-num{display:grid;place-items:center;position:relative;background:var(--tone);color:#f3ece0;
+  font:700 30px/1 var(--kai);writing-mode:vertical-rl;letter-spacing:.1em}
+.op-num::before{content:"";position:absolute;inset:7px 6px;border:1px solid #f3ece066}
+.op-scene{position:relative;overflow:hidden;border-right:1px solid #9c8c7466}
+.op-scene img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .3s ease}
+.opening:hover .op-scene img{transform:scale(1.05)}
+.op-scene::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 62%,#f6f3ea)}
+.op-copy{display:flex;flex-direction:column;justify-content:center;gap:6px;padding:14px 4px 14px 16px;min-width:0}
+.op-title{font:700 20px/1.35 var(--kai);letter-spacing:.08em;color:var(--lacquer)}
+.op-place{color:var(--tone)}
+.op-place::after{content:" · ";color:#9c8c74}
+.op-desc{font-size:13.5px;line-height:1.8;color:#4a423a;letter-spacing:.02em}
+.op-tag{font-size:12px;letter-spacing:.12em;color:var(--faded)}
+.op-arrow{display:grid;place-items:center;font-size:26px;color:var(--tone)}
+.t1{--tone:#a8423f}.t2{--tone:#3e4a5c}.t3{--tone:#6b4a3a}.t4{--tone:#56664b}.t5{--tone:#b0566a}
+.status{min-height:1.6em;margin:12px 0 0;text-align:center;font-size:13px;color:var(--cinnabar);letter-spacing:.06em}
+
+/* 告示 */
+.notices{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:4px}
+.board{position:relative;padding:16px 18px 14px;background:#f3f0e7cc;border:1px solid #9c8c7488}
+.board::before{content:"";position:absolute;inset:3px;border:1px solid #9c8c7433;pointer-events:none}
+.board h3{display:flex;align-items:center;gap:10px;margin:0 0 8px;font:700 18px/1.4 var(--kai);letter-spacing:.14em;color:var(--lacquer)}
+.board h3::before{content:"";width:9px;height:9px;transform:rotate(45deg);background:var(--cinnabar)}
+.board p,.board li{margin:0;font-size:14px;line-height:1.85;color:#433b33;letter-spacing:.02em}
+.board ul{margin:0;padding-left:1.1em}
+.board.wide{grid-column:1/-1}
+.board .warn{color:#7d2f2b}
+
+/* 卷尾 */
+.footer{position:relative;isolation:isolate;margin-top:30px;padding:30px 44px 190px;text-align:center}
+.footer::before{content:"";position:absolute;inset:0;z-index:-1;background:url("https://testingcf.jsdelivr.net/gh/bcyymcy/meiyu-fuxiang@main/zhuye/zhuye.jpg") 80% 100%/200% auto no-repeat;opacity:.8;
+  -webkit-mask-image:linear-gradient(transparent,#000 45%);mask-image:linear-gradient(transparent,#000 45%)}
+.footer::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(#ece8dc,#ece8dcdd 38%,#ece8dc33 75%,#ece8dc00)}
+.community{display:flex;align-items:flex-start;justify-content:center;gap:18px;flex-wrap:wrap;margin:6px 0 10px}
+.author{font:20px/46px var(--kai);letter-spacing:.14em;color:var(--lacquer)}
+.author small{margin-right:10px;font:12px var(--song);letter-spacing:.2em;color:var(--faded)}
+.discord{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 22px;text-decoration:none;
+  font:16px/1 var(--kai);letter-spacing:.16em;color:#f3ece0;background:var(--lacquer);border:1px solid #8a735a;outline:1px solid var(--lacquer);outline-offset:2px;
+  transition:background .2s ease}
+.discord:hover,.discord:focus-visible{background:var(--cinnabar);outline-color:var(--cinnabar)}
+.join{position:relative}
+.join summary{cursor:pointer;list-style:none;user-select:none}
+.join summary::-webkit-details-marker{display:none}
+.join-mark{display:inline-block;font-size:12px;transition:transform .2s ease}
+.join[open] .join-mark{transform:rotate(180deg)}
+.join[open] summary{background:var(--cinnabar);outline-color:var(--cinnabar)}
+.join-list{display:grid;gap:8px;margin-top:10px;padding:10px;background:#f4f1e8f0;border:1px solid #9c8c7488;box-shadow:0 6px 16px #3b2a2222;animation:joinIn .2s ease}
+@keyframes joinIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.join-item{display:flex;align-items:center;gap:12px;min-height:44px;padding:0 14px;text-decoration:none;border:1px solid #9c8c7466;background:var(--paper-hi);color:var(--lacquer);font:16px/1 var(--kai);letter-spacing:.14em;transition:border-color .2s ease,background .2s ease}
+.join-item:hover,.join-item:focus-visible{border-color:var(--cinnabar);background:#fff;outline:none}
+.join-name{flex:1;text-align:left}
+.join-seal{display:grid;place-items:center;width:24px;height:24px;font-size:13px;letter-spacing:0;color:#f3ece0;background:var(--cinnabar);transform:rotate(-4deg)}
+.join-item + .join-item .join-seal{background:var(--moss)}
+.closing{margin:22px 0 0;font:22px/1.7 var(--kai);letter-spacing:.2em;color:#2f2924;text-shadow:0 0 12px #ece8dc}
+.footer-seal{display:inline-block;margin-top:14px;padding:5px 4px;writing-mode:vertical-rl;font:14px/1.1 var(--kai);letter-spacing:3px;
+  color:#f3ece0;background:var(--cinnabar);border:1px solid #f3ece0;outline:1px solid var(--cinnabar);transform:rotate(-4deg)}
+
+@media(max-width:620px){
+  body{padding:8px 5px}.scroll{border-width:5px}
+  .body-copy{padding:26px 18px 0}.prelude::before{left:-18px;right:-18px}
+  .section-title{font-size:24px;gap:10px}.section-title::before,.section-title::after{width:28px}
+  .notice li{font-size:14px}.story p{font-size:15.5px;letter-spacing:.08em}
+  .cast{margin:6px -18px 0;padding:24px 14px 12px}
+  .cast-row{grid-template-columns:90px minmax(0,1fr);gap:18px;padding:16px 4px}
+  .cast-row + .cast-row::before{left:112px;right:4px}
+  .portrait{width:90px;height:120px;padding:4px}
+  .cast-name{font-size:23px;gap:10px}.seal{font-size:10px;padding:3px 2px}
+  .cast-role{font-size:12px;letter-spacing:.04em}.cast-copy{font-size:14px;line-height:1.8}
+  .opening{grid-template-columns:40px 84px minmax(0,1fr) 22px;min-height:138px}
+  .op-num{font-size:25px}.op-num::before{inset:6px 4px}
+  .op-copy{padding:12px 2px 12px 10px}.op-title{font-size:17.5px;letter-spacing:.03em}
+  .op-place{display:block;font:12px/1.5 var(--song);letter-spacing:.08em}.op-place::after{content:none}
+  .op-desc{font-size:12.5px;line-height:1.75}.op-tag{font-size:11px;letter-spacing:.04em}.op-arrow{font-size:22px}
+  .notices{grid-template-columns:1fr}
+  .footer{padding:24px 18px 170px}.closing{font-size:19px;letter-spacing:.1em}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<main class="scroll">
+  <header class="hero">
+    <img src="https://testingcf.jsdelivr.net/gh/bcyymcy/meiyu-fuxiang@main/zhuye/zhuye.jpg" data-fallback alt="梅雨浮香。民国 · 江南白水镇 · 黄梅天。雨中白墙黛瓦的老宅。" width="1200" height="800" decoding="async" fetchpriority="high">
+  </header>
+
+  <div class="body-copy">
+    <div class="prelude">
+      <section class="notice" aria-labelledby="t-notice">
+        <h2 class="section-title" id="t-notice">入宅须知</h2>
+        <ul>
+          <li>本作是面向成年玩家的虚构互动故事，含伦理禁忌与暧昧关系描写，请按自己的舒适度游玩。</li>
+          <li>五段开场彼此独立，不分先后，挑一处最想推开的门即可。</li>
+          <li>每个人的心境、衣着与所在之处，会随你的选择在状态栏里慢慢变化。</li>
+        </ul>
+      </section>
+      <div class="rule" aria-hidden="true"><span>◇ 雨 ◇</span></div>
+      <section class="story" aria-labelledby="t-story">
+        <h2 class="section-title" id="t-story">故事由此</h2>
+        <p>民国初年，江南白水镇，六月黄梅天。<br>你携新婚妻子回乡省亲，住进裴家老宅的西厢。<br>大哥卧病，大嫂守着东厢的药炉与屏风，<br>岳母、堂妹也先后来到这座宅子。<br>雨下了半个月，<em>屏风很薄，回廊很短。</em></p>
+      </section>
+      <div class="rule" aria-hidden="true"><span>◇ 雨 ◇</span></div>
+    </div>
+
+    <section class="cast" aria-labelledby="t-cast">
+      <h2 class="section-title" id="t-cast">宅中人</h2>
+      <article class="cast-row c-zhao">
+        <div class="portrait"><img src="https://testingcf.jsdelivr.net/gh/bcyymcy/meiyu-fuxiang@main/zhuye/ren_yuzhaomian.jpg" data-fallback alt="虞照眠：药炉与栀子" width="300" height="400" loading="lazy" decoding="async"></div>
+        <div>
+          <h3 class="cast-name">虞照眠<span class="seal" aria-hidden="true">照眠</span></h3>
+          <p class="cast-role">裴家大少奶奶 · 你的大嫂</p>
+          <p class="cast-copy">长兄卧病三年，她独自守着东厢的药炉与屏风。端庄守礼，唤你一声「二弟」，却也是这宅里最需要人搭把手的那一个。</p>
+        </div>
+      </article>
+      <article class="cast-row c-shu">
+        <div class="portrait"><img src="https://testingcf.jsdelivr.net/gh/bcyymcy/meiyu-fuxiang@main/zhuye/ren_qinshuyu.jpg" data-fallback alt="秦漱玉：经卷、念珠与金丝眼镜" width="300" height="400" loading="lazy" decoding="async"></div>
+        <div>
+          <h3 class="cast-name">秦漱玉<span class="seal" aria-hidden="true">漱玉</span></h3>
+          <p class="cast-role">虞家太夫人 · 大嫂的生母</p>
+          <p class="cast-copy">乘船来帮衬女儿，暂住东厢耳房。金丝眼镜、经卷念珠，规矩比谁都严；隔着那道湘妃竹帘，外间的动静她也比谁都听得清。</p>
+        </div>
+      </article>
+      <article class="cast-row c-wei">
+        <div class="portrait"><img src="https://testingcf.jsdelivr.net/gh/bcyymcy/meiyu-fuxiang@main/zhuye/ren_peizhiwei.jpg" data-fallback alt="裴知微：听诊器、药瓶与白玉兰" width="300" height="400" loading="lazy" decoding="async"></div>
+        <div>
+          <h3 class="cast-name">裴知微<span class="seal" aria-hidden="true">知微</span></h3>
+          <p class="cast-role">二房堂妹 · 留洋归来的西医</p>
+          <p class="cast-copy">每日来东厢替大哥复健看诊。白大褂、听诊器，说起医理来一板一眼，叫你一声「二哥」时，脸却红得比谁都快。</p>
+        </div>
+      </article>
+      <article class="cast-row c-shang">
+        <div class="portrait"><img src="https://testingcf.jsdelivr.net/gh/bcyymcy/meiyu-fuxiang@main/zhuye/ren_xiemingshang.jpg" data-fallback alt="谢明裳：海棠、翡翠镯与团扇" width="300" height="400" loading="lazy" decoding="async"></div>
+        <div>
+          <h3 class="cast-name">谢明裳<span class="seal" aria-hidden="true">明裳</span></h3>
+          <p class="cast-role">省城名门千金 · 你的新婚妻子</p>
+          <p class="cast-copy">三个月前嫁你为妻，随你回乡住在西厢。怕羞、爱娇，一盅燕窝也要亲手端到你面前——只是你在东厢，总待得太久。</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="openings" aria-labelledby="t-open">
+      <h2 class="section-title" id="t-open">择一扇屏，入此局</h2>
+      <p class="entry-note">五处房舍，五段开篇 · 点击题签进入故事</p>
+      <div class="opening-list">
+        <button type="button" class="opening t1" data-opening="1" aria-label="选择开场壹：东厢屏风外，隔屏擦身">
+          <span class="op-num" aria-hidden="true">壹</span>
+          <span class="op-scene" aria-hidden="true"><img src="https://testingcf.jsdelivr.net/gh/bcyymcy/meiyu-fuxiang@main/zhuye/kaichang1.jpg" data-fallback alt="" loading="lazy" decoding="async"></span>
+          <span class="op-copy">
+            <span class="op-title"><span class="op-place">东厢屏风外</span>隔屏擦身</span>
+            <span class="op-desc">午后闷如蒸笼。屏风后是大哥粗重的喘息，屏风外，大嫂刚替他擦完身子，衣衫早被汗湿透。</span>
+            <span class="op-tag">虞照眠 · 一屏之隔</span>
+          </span>
+          <span class="op-arrow" aria-hidden="true">›</span>
+        </button>
+        <button type="button" class="opening t2" data-opening="2" aria-label="选择开场贰：西厢客房，三更叩门">
+          <span class="op-num" aria-hidden="true">贰</span>
+          <span class="op-scene" aria-hidden="true"><img src="https://testingcf.jsdelivr.net/gh/bcyymcy/meiyu-fuxiang@main/zhuye/kaichang2.jpg" data-fallback alt="" loading="lazy" decoding="async"></span>
+          <span class="op-copy">
+            <span class="op-title"><span class="op-place">西厢客房</span>三更叩门</span>
+            <span class="op-desc">白日祠堂里，叔伯一句「长房断不得香火」。三更雷雨，有人撑着油纸伞，叩响了你的房门。</span>
+            <span class="op-tag">虞照眠 · 雨夜来客</span>
+          </span>
+          <span class="op-arrow" aria-hidden="true">›</span>
+        </button>
+        <button type="button" class="opening t3" data-opening="3" aria-label="选择开场叁：东厢耳房，竹帘之后">
+          <span class="op-num" aria-hidden="true">叁</span>
+          <span class="op-scene" aria-hidden="true"><img src="https://testingcf.jsdelivr.net/gh/bcyymcy/meiyu-fuxiang@main/zhuye/kaichang3.jpg" data-fallback alt="" loading="lazy" decoding="async"></span>
+          <span class="op-copy">
+            <span class="op-title"><span class="op-place">东厢耳房</span>竹帘之后</span>
+            <span class="op-desc">屏风外刚出了一场荒唐的意外，里间的大哥翻身干咳——就在这时，耳房的竹帘被掀开了。</span>
+            <span class="op-tag">秦漱玉 · 虞照眠 · 替女遮丑</span>
+          </span>
+          <span class="op-arrow" aria-hidden="true">›</span>
+        </button>
+        <button type="button" class="opening t4" data-opening="4" aria-label="选择开场肆：东厢里间，榻前听诊">
+          <span class="op-num" aria-hidden="true">肆</span>
+          <span class="op-scene" aria-hidden="true"><img src="https://testingcf.jsdelivr.net/gh/bcyymcy/meiyu-fuxiang@main/zhuye/kaichang4.jpg" data-fallback alt="" loading="lazy" decoding="async"></span>
+          <span class="op-copy">
+            <span class="op-title"><span class="op-place">东厢里间</span>榻前听诊</span>
+            <span class="op-desc">雨歇时分，大嫂与秦伯母去了后厨。留洋归来的堂妹站在床边替大哥听诊，屋里只剩药气与酒精味。</span>
+            <span class="op-tag">裴知微 · 例行看诊</span>
+          </span>
+          <span class="op-arrow" aria-hidden="true">›</span>
+        </button>
+        <button type="button" class="opening t5" data-opening="5" aria-label="选择开场伍：西厢婚房，燕窝甜香">
+          <span class="op-num" aria-hidden="true">伍</span>
+          <span class="op-scene" aria-hidden="true"><img src="https://testingcf.jsdelivr.net/gh/bcyymcy/meiyu-fuxiang@main/zhuye/kaichang5.jpg" data-fallback alt="" loading="lazy" decoding="async"></span>
+          <span class="op-copy">
+            <span class="op-title"><span class="op-place">西厢婚房</span>燕窝甜香</span>
+            <span class="op-desc">一场急雨刚过，你从东厢回来推开房门，新婚的妻子正站在窗边，替你盛一盅燕窝。</span>
+            <span class="op-tag">谢明裳 · 新婚燕尔</span>
+          </span>
+          <span class="op-arrow" aria-hidden="true">›</span>
+        </button>
+      </div>
+      <p id="status" class="status" role="status" aria-live="polite"></p>
+    </section>
+
+    <div class="rule" aria-hidden="true"><span>◇ 告 ◇</span></div>
+    <section class="notices" aria-label="声明">
+      <article class="board">
+        <h3>版权声明</h3>
+        <p class="warn">这张角色卡是免费的，永远禁止商业化行为。如果你是购买获得，请立即退款并向购买平台举报倒卖者，维护创作者和你自身的权益。</p>
+      </article>
+      <article class="board">
+        <h3>转载声明</h3>
+        <p class="warn">未经作者明确授权，严禁将本作品转载至其他任何平台。</p>
+      </article>
+      <article class="board wide">
+        <h3>游玩提醒</h3>
+        <ul>
+          <li>故事纯属虚构，人物言行不代表现实建议。</li>
+          <li>想换一条路，可以回到第一条消息的主页，重新择一扇屏。</li>
+        </ul>
+      </article>
+    </section>
+  </div>
+
+  <footer class="footer">
+    <div class="community">
+      <span class="author"><small>作者</small>枝生</span>
+      <details class="join">
+        <summary class="discord">加入 Discord 社群 <span class="join-mark" aria-hidden="true">▾</span></summary>
+        <div class="join-list">
+          <a class="join-item" href="https://discord.gg/tEDj6GqWn" target="_blank" rel="noopener noreferrer"><span class="join-seal" aria-hidden="true">棱</span><span class="join-name">棱镜社区</span><span aria-hidden="true">↗</span></a>
+          <a class="join-item" href="https://discord.gg/odysseia" target="_blank" rel="noopener noreferrer"><span class="join-seal" aria-hidden="true">类</span><span class="join-name">类脑社区</span><span aria-hidden="true">↗</span></a>
+        </div>
+      </details>
+    </div>
+    <p class="closing">雨停之前，谁也走不出这座宅子。</p>
+    <span class="footer-seal" aria-hidden="true">浮香</span>
+  </footer>
+</main>
+<script>
+(function () {
+  'use strict';
+  document.querySelectorAll('img[data-fallback]').forEach(function (img) {
+    img.addEventListener('error', function onErr() {
+      img.removeEventListener('error', onErr);
+      img.src = img.src.replace('testingcf.jsdelivr.net', 'cdn.jsdelivr.net');
+    });
+  });
+
+  var status = document.getElementById('status');
+  var buttons = Array.prototype.slice.call(document.querySelectorAll('[data-opening]'));
+  var numerals = ['', '壹', '贰', '叁', '肆', '伍'];
+  var switching = false;
+
+  async function switchToOpening(swipeId, clicked) {
+    if (switching) return;
+    if (typeof getChatMessages !== 'function' || typeof setChatMessages !== 'function') {
+      status.textContent = '已选开场' + numerals[swipeId] + '。请在酒馆中打开角色卡后点击切换。';
+      return;
+    }
+    switching = true;
+    buttons.forEach(function (b) { b.disabled = true; });
+    if (clicked) clicked.setAttribute('aria-busy', 'true');
+    status.textContent = '正在推门…';
+    try {
+      var messages = getChatMessages(0, { include_swipes: true });
+      var target = messages && messages[0] && messages[0].swipes && messages[0].swipes[swipeId];
+      if (target === undefined) {
+        throw new Error('未找到开场' + numerals[swipeId] + '，请确认角色卡已包含全部五段开场。');
+      }
+      await setChatMessages([{ message_id: 0, swipe_id: swipeId }]);
+      status.textContent = '';
+    } catch (error) {
+      console.error('切换开场失败:', error);
+      status.textContent = (error && error.message) || '切换开场失败，请重试。';
+    } finally {
+      switching = false;
+      buttons.forEach(function (b) { b.disabled = false; });
+      if (clicked) clicked.removeAttribute('aria-busy');
+    }
+  }
+  window.switchToOpening = switchToOpening;
+  buttons.forEach(function (b) {
+    b.addEventListener('click', function () { switchToOpening(Number(b.dataset.opening), b); });
+  });
+})();
+</script>
+</body>
+</html>
